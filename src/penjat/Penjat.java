@@ -11,6 +11,7 @@ import java.util.Scanner;
  * @author alexg
  */
 public class Penjat {
+    public static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         //char letra = sc.nextLine().charAt(0);
@@ -105,7 +106,9 @@ public class Penjat {
         }
     }   
     static String demanarLletra(String lletres) {
-        return null;   
+        String lletraDemanada = sc.nextLine();
+        lletres += lletraDemanada;
+        return lletraDemanada;   
     } 
     static boolean existeixLletra(String lletres, char lletra) {
         
