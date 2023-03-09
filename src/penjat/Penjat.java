@@ -81,14 +81,17 @@ public class Penjat {
         }
     }
     static void inicialitzarEstatPenjat(char[][] estatPenjatIni, char[][] estat) {
-    
+        for (int i = 0; i < estatPenjatIni.length; ++i) {
+            for (int j = 0; j < estatPenjatIni[0].length; ++j) {
+                estat[i][j] = estatPenjatIni[i][j];
+            }
+        }
     }
     static void mostrarParaula(String paraula, boolean[] encertades) {
         String paraulaOculta = "";
         for (int i = 0; i < paraula.length(); i++){
             paraulaOculta += "*";
         }
-        
     }   
     static void mostrarLletresIntroduides(String lletres) {
         for (int i = 0; i < lletres.length(); i++){
