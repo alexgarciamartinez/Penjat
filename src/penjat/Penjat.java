@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Penjat {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        char letra = sc.nextLine().charAt(0);
+        //char letra = sc.nextLine().charAt(0);
         final char[][] estatPenjatInicial =
         {
           {' ',' ',' ',' ','_','_','_','_',' ',' ',' ',' '},                                      
@@ -90,8 +90,14 @@ public class Penjat {
     static void mostrarParaula(String paraula, boolean[] encertades) {
         String paraulaOculta = "";
         for (int i = 0; i < paraula.length(); i++){
-            paraulaOculta += "*";
+            if (encertades[i] == true){
+                paraulaOculta += paraula.charAt(i);
+            }
+            else{
+                paraulaOculta += "*";
+            }
         }
+        System.out.println(paraulaOculta);
     }   
     static void mostrarLletresIntroduides(String lletres) {
         for (int i = 0; i < lletres.length(); i++){
