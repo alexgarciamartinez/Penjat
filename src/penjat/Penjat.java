@@ -59,7 +59,8 @@ public class Penjat {
         paraula = "patata";
             
             
-        int totalEncerts = 0,totalErrors = 0;
+        int totalEncerts = 0;
+        int totalErrors = 0;
             
         // Estructra de dades (array) per saber quines lletres portem 
         //encertades            
@@ -67,9 +68,22 @@ public class Penjat {
             
         // Llistat de lletres que hem introduït
         String lletres = "";
-            
         do {
+            System.out.print("Paraula: ");
+            mostrarParaula(paraula,lletresEncertades);
             
+            System.out.print("Lletres: ");
+            mostrarLletresIntroduides(lletres);
+            
+            System.out.print("Introdueix lletra:");
+            char lletra = demanarLletra(lletres).charAt(0);
+            lletres += lletra;
+            for (int i = 0; i < paraula.length(); i++) {
+                if (paraula.charAt(i) == lletra) {
+                    lletresEncertades[i] = true;
+                    totalEncerts++;
+                }
+            }
         } while(totalEncerts < paraula.length() && totalErrors < MAXINTENTS);
     }
     
@@ -89,35 +103,39 @@ public class Penjat {
         }
     }
     static void mostrarParaula(String paraula, boolean[] encertades) {
-        String paraulaOculta = "";
         for (int i = 0; i < paraula.length(); i++){
             if (encertades[i] == true){
-                paraulaOculta += paraula.charAt(i);
+                System.out.print(paraula.charAt(i));
             }
             else{
-                paraulaOculta += "*";
+                System.out.print("*");
             }
         }
-        System.out.println(paraulaOculta);
+        System.out.println("");
     }   
     static void mostrarLletresIntroduides(String lletres) {
         for (int i = 0; i < lletres.length(); i++){
             System.out.print(lletres.charAt(i));
         }
+        System.out.println("");
     }   
     static String demanarLletra(String lletres) {
         String lletraDemanada = sc.nextLine();
-        lletres += lletraDemanada;
         return lletraDemanada;   
     } 
     static boolean existeixLletra(String lletres, char lletra) {
-        
-        return true;
+        boolean encert = false;
+        for (int i = 0; i < lletres.length(); i++){
+            if (lletres.charAt(i) == lletra){
+                encert = true;
+            }
+        }
+        return encert;
     }
-    static void actualitzarEstatPenjat(char[][] penjat,int errors) {
+    /*static void actualitzarEstatPenjat(char[][] penjat,int errors) {
         
     }
     static void netejaPantalla() {
     
-    }
+    }*/
 }
