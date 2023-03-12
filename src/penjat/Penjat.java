@@ -66,8 +66,8 @@ public class Penjat {
             
         // Llistat de lletres que hem introduït
         String lletres = "";
+        
         do {
-            actualitzarEstatPenjat(estatPenjat, totalErrors);
             mostrarEstatPenjat(estatPenjat);
             System.out.print("Paraula: ");
             mostrarParaula(paraula,lletresEncertades);
@@ -101,7 +101,18 @@ public class Penjat {
                 totalErrors++;
             }
             System.out.println("");
+            actualitzarEstatPenjat(estatPenjat, totalErrors);
         } while(totalEncerts < paraula.length() && totalErrors < MAXINTENTS);
+        
+        if (MAXINTENTS == 8){
+            mostrarEstatPenjat(estatPenjat);
+            System.out.print("Paraula: ");
+            mostrarParaula(paraula,lletresEncertades);
+            System.out.print("Lletres: ");
+            mostrarLletresIntroduides(lletres);
+            System.out.println("OOOOOoooohhhh! Has perdut!!");
+            System.out.println("La paraula secreta era: " + paraula);
+        }
     }
     
     static void mostrarEstatPenjat(char[][] estat) {
