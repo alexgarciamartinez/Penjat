@@ -14,7 +14,6 @@ public class Penjat {
     public static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        //char letra = sc.nextLine().charAt(0);
         final char[][] estatPenjatInicial =
         {
           {' ',' ',' ',' ','_','_','_','_',' ',' ',' ',' '},                                      
@@ -39,7 +38,7 @@ public class Penjat {
                             "nebot","pastanaga","patinet","perruqueria",
                             "pissarra","professor","quadrat","taronja",
                             "tramvia","trapezi","tricicle","violeta"};
-        final int MAXINTENTS = 7;
+        final int MAXINTENTS = 8;
         
         // Estat gràfic del joc durant la partida
         char[][] estatPenjat = 
@@ -50,7 +49,7 @@ public class Penjat {
         inicialitzarEstatPenjat(estatPenjatInicial,estatPenjat);
             
             
-        mostrarEstatPenjat(estatPenjat);
+        //mostrarEstatPenjat(estatPenjat);
             
         // Seleccionar la paraula aleatòriament
         int index = (int)(Math.random()*paraules.length);
@@ -68,6 +67,8 @@ public class Penjat {
         // Llistat de lletres que hem introduït
         String lletres = "";
         do {
+            actualitzarEstatPenjat(estatPenjat, totalErrors);
+            mostrarEstatPenjat(estatPenjat);
             System.out.print("Paraula: ");
             mostrarParaula(paraula,lletresEncertades);
             
@@ -148,10 +149,37 @@ public class Penjat {
         }
         return existeix;
     }
-    /*static void actualitzarEstatPenjat(char[][] penjat,int errors) {
-        
+    static void actualitzarEstatPenjat(char[][] penjat,int errors) {
+        int fila = 1; 
+        int columna = 8;
+        switch (errors){
+            case 1:
+                penjat[fila][columna] = '|';
+                break;
+            case 2:
+                penjat[fila+1][columna] = 'o';
+                break;
+            case 3:
+                penjat[fila+2][columna] = '|';
+                break;
+            case 4:
+                penjat[fila+2][columna-1] = '/';
+                break;
+            case 5:
+                penjat[fila+2][columna+1] = '\\';
+                break;
+            case 6:
+                penjat[fila+3][columna] = '|';
+                break;
+            case 7:
+                penjat[fila+4][columna-1] = '/';
+                break;  
+            case 8:
+                penjat[fila+4][columna+1] = '\\';
+                break; 
+        }
     }
-    static void netejaPantalla() {
+    /*static void netejaPantalla() {
     
     }*/
 }
