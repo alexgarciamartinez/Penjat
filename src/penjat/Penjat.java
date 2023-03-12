@@ -57,8 +57,7 @@ public class Penjat {
         String paraula = paraules[index];
         // Eliminar aquesta línia quan el joc estigui completat
         paraula = "patata";
-            
-            
+             
         int totalEncerts = 0;
         int totalErrors = 0;
             
@@ -75,15 +74,32 @@ public class Penjat {
             System.out.print("Lletres: ");
             mostrarLletresIntroduides(lletres);
             
-            System.out.print("Introdueix lletra:");
-            char lletra = demanarLletra(lletres).charAt(0);
-            lletres += lletra;
+            char lletra = ' ';
+            boolean existeix = false;
+            while (!existeix){
+                System.out.print("Introdueix lletra:");
+                lletra = demanarLletra(lletres).charAt(0);
+                if (existeixLletra(lletres, lletra)){
+                    existeix = false;
+                }
+                else {
+                    lletres += lletra;
+                    existeix = true;
+                } 
+            }
+            
+            boolean esEncert = false;
             for (int i = 0; i < paraula.length(); i++) {
-                if (paraula.charAt(i) == lletra) {
+                if (lletra == paraula.charAt(i)) {
                     lletresEncertades[i] = true;
+                    esEncert = true;
                     totalEncerts++;
                 }
             }
+            if (!esEncert){
+                totalErrors++;
+            }
+            System.out.println("");
         } while(totalEncerts < paraula.length() && totalErrors < MAXINTENTS);
     }
     
@@ -124,13 +140,13 @@ public class Penjat {
         return lletraDemanada;   
     } 
     static boolean existeixLletra(String lletres, char lletra) {
-        boolean encert = false;
+        boolean existeix = false;
         for (int i = 0; i < lletres.length(); i++){
             if (lletres.charAt(i) == lletra){
-                encert = true;
+                existeix = true;
             }
         }
-        return encert;
+        return existeix;
     }
     /*static void actualitzarEstatPenjat(char[][] penjat,int errors) {
         
