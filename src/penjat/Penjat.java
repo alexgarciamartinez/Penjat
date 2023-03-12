@@ -67,7 +67,6 @@ public class Penjat {
             
         // Llistat de lletres que hem introduït
         String lletres = "";
-        
         do {
             mostrarEstatPenjat(estatPenjat);
             System.out.print("Paraula: ");
@@ -81,18 +80,18 @@ public class Penjat {
             while (!existeix){
                 System.out.print("Introdueix lletra:");
                 lletra = demanarLletra(lletres).charAt(0);
-                if (existeixLletra(lletres, lletra)){
+                if (existeixLletra(lletres, Character.toLowerCase(lletra))){
                     existeix = false;
                 }
                 else {
-                    lletres += lletra;
+                    lletres += Character.toLowerCase(lletra);
                     existeix = true;
                 } 
             }
             
             boolean esEncert = false;
             for (int i = 0; i < paraula.length(); i++) {
-                if (lletra == paraula.charAt(i)) {
+                if (Character.toLowerCase(lletra) == paraula.charAt(i)) {
                     lletresEncertades[i] = true;
                     esEncert = true;
                     totalEncerts++;
@@ -156,7 +155,7 @@ public class Penjat {
     static boolean existeixLletra(String lletres, char lletra) {
         boolean existeix = false;
         for (int i = 0; i < lletres.length(); i++){
-            if (lletres.charAt(i) == lletra){
+            if (lletres.charAt(i) == Character.toLowerCase(lletra)){
                 existeix = true;
             }
         }
