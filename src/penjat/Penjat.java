@@ -4,6 +4,7 @@
  */
 package penjat;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -102,9 +103,10 @@ public class Penjat {
             }
             System.out.println("");
             actualitzarEstatPenjat(estatPenjat, totalErrors);
+            netejaPantalla();
         } while(totalEncerts < paraula.length() && totalErrors < MAXINTENTS);
         
-        if (MAXINTENTS == 8){
+        if (totalErrors == 8){
             mostrarEstatPenjat(estatPenjat);
             System.out.print("Paraula: ");
             mostrarParaula(paraula,lletresEncertades);
@@ -190,7 +192,15 @@ public class Penjat {
                 break; 
         }
     }
-    /*static void netejaPantalla() {
-    
-    }*/
+    static void netejaPantalla() {
+        try{
+            if (System.getProperty("os.name").contains("Windows")){
+                new ProcessBuilder("cmd", "/c", "cls").
+                    inheritIO().start().waitFor();
+                } else{
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                }
+        }catch(IOException | InterruptedException ex){}
+    }
 }
