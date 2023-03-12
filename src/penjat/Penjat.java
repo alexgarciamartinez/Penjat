@@ -55,8 +55,6 @@ public class Penjat {
         // Seleccionar la paraula aleatòriament
         int index = (int)(Math.random()*paraules.length);
         String paraula = paraules[index];
-        // Eliminar aquesta línia quan el joc estigui completat
-        paraula = "patata";
              
         int totalEncerts = 0;
         int totalErrors = 0;
@@ -113,6 +111,9 @@ public class Penjat {
             mostrarLletresIntroduides(lletres);
             System.out.println("OOOOOoooohhhh! Has perdut!!");
             System.out.println("La paraula secreta era: " + paraula);
+        }
+        else if (totalEncerts == paraula.length()){
+            System.out.println("Enhorabona, has guanyat! La paraula era: " + paraula);
         }
     }
     
